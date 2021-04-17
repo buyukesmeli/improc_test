@@ -1,0 +1,15 @@
+*.d
+*.o
+*.map
+*.crf
+*.axf
+*.tmp
+*.scvd
+*.uvoptx
+*.htm
+*.iex
+*.dep
+*.uvguix*
+Debug/*
+Release/*
+.settings/*
