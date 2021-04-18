@@ -59,6 +59,13 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LCD_FRAME_BUFFER 0xC0000000
+#define PROCESS_BUFFER 0xC007F800
+#define IMAGE_ADDRESS_1 0xC00FF000
+#define IMAGE_ADDRESS_2 0xC017E800
+#define IMAGE_ADDRESS_3 0xC01FD000
+#define IMAGE_ADDRESS_4 0xC02FC800
+#define IMAGE_ADDRESS_5 0xC02BD000
 #define LCD_B0_Pin GPIO_PIN_4
 #define LCD_B0_GPIO_Port GPIOE
 #define OTG_HS_OverCurrent_Pin GPIO_PIN_3
@@ -384,14 +391,7 @@ void Error_Handler(void);
 #define ARDUINO_MOSI_PWM_D11_Pin GPIO_PIN_15
 #define ARDUINO_MOSI_PWM_D11_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-// Predefined Image addresses on SDRAM
-#define LCD_FRAME_BUFFER 	0xC0000000
-#define IMAGE_ADDRESS_1 	0xC007F800
-#define IMAGE_ADDRESS_2 	0xC00FF000
-#define IMAGE_ADDRESS_3 	0xC017E800
-#define IMAGE_ADDRESS_4 	0xC01FD000
-#define IMAGE_ADDRESS_5 	0xC02FC800
-#define IMAGE_ADDRESS_6 	0xC02BD000
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
