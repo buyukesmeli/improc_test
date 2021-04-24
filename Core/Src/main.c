@@ -121,16 +121,17 @@ int main(void) {
 	/* Initialize all configured peripherals */
 	MX_GPIO_Init();
 	MX_FMC_Init();
-	MX_USART6_UART_Init();
+
 	MX_DMA2D_Init();
 	MX_LTDC_Init();
+	MX_USART6_UART_Init();
 	/* USER CODE BEGIN 2 */
 	SDRAM_Initialization_sequence(0x0603);
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-	Image img, gray_img;
+	Image img, gray_img,gray_img_float;
 	ConfigureImage(&img, (uint8_t*) IMAGE_ADDRESS_1, 128, 128, 1,
 			IMAGE_FORMAT_RGB, IMAGE_DATA_TYPE_UINT8);
 
@@ -143,9 +144,11 @@ int main(void) {
 	}
 	ConfigureImage(&gray_img, (uint8_t*) IMAGE_ADDRESS_2, 128, 128, 1,
 			IMAGE_FORMAT_MONO, IMAGE_DATA_TYPE_UINT8);
-
+	ConfigureImage(&gray_img_float, (uint8_t*) IMAGE_ADDRESS_3, 128, 128, 1,
+				IMAGE_FORMAT_MONO, IMAGE_DATA_TYPE_FLOAT);
 
 	rgb_to_gray(&img, &gray_img);
+	convert_to_float(&gray_img,&gray_img_float);
 
 	LTDC_LayerCfgTypeDef img_layer;
 	img_layer.FBStartAdress = LCD_FRAME_BUFFER;
@@ -153,8 +156,6 @@ int main(void) {
 	img_layer.ImageHeight = 272;
 	img_layer.WindowX0 = 0;
 	img_layer.WindowY0 = 0;
-
-	imshow_gray8(&gray_img, &hdma2d, &img_layer);
 
 	while (1) {
 		/* USER CODE END WHILE */
