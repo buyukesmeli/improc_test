@@ -40,3 +40,18 @@ void imshow_gray8(Image* img, DMA2D_HandleTypeDef * hdma2d, LTDC_LayerCfgTypeDef
 	buf_img.pData = (uint8_t *) PROCESS_BUFFER;
 	imshow_rgb888(&buf_img,hdma2d,lcd_layer);
 }
+
+void imshow_gray_f32(Image* img, DMA2D_HandleTypeDef * hdma2d, LTDC_LayerCfgTypeDef * lcd_layer){
+	int i;
+	uint8_t p;
+	Image buf_img;
+	memcpy(&buf_img,img,sizeof(buf_img));
+	for (i=0;i<img->Width*img->Height;i++){
+		p = (uint8_t)READ_AS_FLOAT(img,0,i);
+		memcpy((uint8_t *) PROCESS_BUFFER+3*i,&p,1);
+		memcpy((uint8_t *) PROCESS_BUFFER+3*i+1,&p,1);
+		memcpy((uint8_t *) PROCESS_BUFFER+3*i+2,&p,1);
+	}
+	buf_img.pData = (uint8_t *) PROCESS_BUFFER;
+	imshow_rgb888(&buf_img,hdma2d,lcd_layer);
+}
