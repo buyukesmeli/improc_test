@@ -3,6 +3,7 @@
 	<name>dip</name>
 	<comment></comment>
 	<projects>
+		<project>mcv</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
